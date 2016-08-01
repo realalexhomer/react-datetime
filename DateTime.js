@@ -23,21 +23,21 @@ var Datetime = React.createClass({
 	propTypes: {
 		// value: TYPES.object | TYPES.string,
 		// defaultValue: TYPES.object | TYPES.string,
-		onFocus: TYPES.func,
-		onBlur: TYPES.func,
-		onChange: TYPES.func,
-		locale: TYPES.string,
-		input: TYPES.bool,
+		onFocus: React.PropTypes.func,
+		onBlur: React.PropTypes.func,
+		onChange: React.PropTypes.func,
+		locale: React.PropTypes.string,
+		input: React.PropTypes.bool,
 		// dateFormat: TYPES.string | TYPES.bool,
 		// timeFormat: TYPES.string | TYPES.bool,
-		inputProps: TYPES.object,
-		timeConstraints: TYPES.object,
-		viewMode: TYPES.oneOf(['years', 'months', 'days', 'time']),
-		isValidDate: TYPES.func,
-		open: TYPES.bool,
-		strictParsing: TYPES.bool,
-		closeOnSelect: TYPES.bool,
-		closeOnTab: TYPES.bool
+		inputProps: React.PropTypes.object,
+		timeConstraints: React.PropTypes.object,
+		viewMode: React.PropTypes.oneOf(['years', 'months', 'days', 'time']),
+		isValidDate: React.PropTypes.func,
+		open: React.PropTypes.bool,
+		strictParsing: React.PropTypes.bool,
+		closeOnSelect: React.PropTypes.bool,
+		closeOnTab: React.PropTypes.bool
 	},
 
 	getDefaultProps: function() {
@@ -230,6 +230,10 @@ var Datetime = React.createClass({
 			;
 
 			update[ date ] = me.state[ date ].clone()[ op ]( amount, type );
+
+			if (update[ date ].isBefore(moment())) {
+				update[ date ] = moment();
+			}
 
 			me.setState( update );
 		};

@@ -3,12 +3,13 @@
 var React = require('react');
 
 var DOM = React.DOM;
+var noop = function(){}
 var DateTimePickerMonths = React.createClass({
 	render: function() {
 		return DOM.div({ className: 'rdtMonths' }, [
 			DOM.table({ key: 'a'}, DOM.thead({}, DOM.tr({}, [
 				DOM.th({ key: 'prev', className: 'rdtPrev' }, DOM.span({onClick: this.props.subtractTime(1, 'years')}, '‹')),
-				DOM.th({ key: 'year', className: 'rdtSwitch', onClick: this.props.showView('years'), colSpan: 2, 'data-value': this.props.viewDate.year()}, this.props.viewDate.year() ),
+				DOM.th({ key: 'year', className: 'rdtSwitch', onClick: noop, colSpan: 2, 'data-value': this.props.viewDate.year()}, this.props.viewDate.year() ),
 				DOM.th({ key: 'next', className: 'rdtNext' }, DOM.span({onClick: this.props.addTime(1, 'years')}, '›'))
 			]))),
 			DOM.table({ key: 'months'}, DOM.tbody({ key: 'b'}, this.renderMonths()))

@@ -1,16 +1,18 @@
 'use strict';
 
 var React = require('react');
+var noop = function(){};
 
 var DOM = React.DOM;
 var DateTimePickerYears = React.createClass({
 	render: function() {
+	console.log('here');
 		var year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
 
 		return DOM.div({ className: 'rdtYears' }, [
 			DOM.table({ key: 'a'}, DOM.thead({}, DOM.tr({}, [
 				DOM.th({ key: 'prev', className: 'rdtPrev' }, DOM.span({onClick: this.props.subtractTime(10, 'years')}, '‹')),
-				DOM.th({ key: 'year', className: 'rdtSwitch', onClick: this.props.showView('years'), colSpan: 2 }, year + '-' + (year + 9) ),
+				DOM.th({ key: 'year', className: 'rdtSwitch', onClick: noop, colSpan: 2 }, year + '-' + (year + 9) ),
 				DOM.th({ key: 'next', className: 'rdtNext'}, DOM.span({onClick: this.props.addTime(10, 'years')}, '›'))
 				]))),
 			DOM.table({ key: 'years'}, DOM.tbody({}, this.renderYears( year )))
