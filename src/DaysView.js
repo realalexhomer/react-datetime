@@ -15,10 +15,16 @@ var DateTimePickerDays = React.createClass({
 			tableChildren
 		;
 
+		var prevClassName = 'rdtPrev';
+
+		if (this.props.viewDate.month() <= moment().month()) {
+			prevClassName += ' is-disabled';
+		}
+
 		tableChildren = [
 			DOM.thead({ key: 'th'}, [
 				DOM.tr({ key: 'h'}, [
-					DOM.th({ key: 'p', className: 'rdtPrev', onClick: this.props.subtractTime(1, 'months') }),
+					DOM.th({ key: 'p', className: prevClassName, onClick: this.props.subtractTime(1, 'months') }),
 					DOM.th({ key: 's', className: 'rdtSwitch', onClick: noop, colSpan: 5, 'data-value': this.props.viewDate.month() }, locale.months( date ) + ' ' + date.year() ),
 					DOM.th({ key: 'n', className: 'rdtNext', onClick: this.props.addTime(1, 'months')})
 				]),
