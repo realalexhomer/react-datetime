@@ -17,7 +17,7 @@ var DateTimePickerDays = React.createClass({
 
 		var prevClassName = 'rdtPrev';
 
-		if (this.props.viewDate.month() <= moment().month()) {
+		if (this.props.viewDate.year() <= moment().year() && this.props.viewDate.month() <= moment().month()) {
 			prevClassName += ' is-disabled';
 		}
 
